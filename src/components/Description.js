@@ -1,3 +1,4 @@
+import {Button} from 'react-bootstrap'
 import React from 'react'
 import { useSelector } from 'react-redux';
 import Card from 'react-bootstrap/Card'
@@ -5,12 +6,13 @@ function Description(props) {
   const { news, searchData } = useSelector((state) => state.getNews)
   const param1 = props.match.params.id
   const param2 = props.match.params.param
+  const goBack=()=>{
+    props.history.push('/')
+  }
 
-  return (
+  return news.length ? (
     <>
-      <h1>Description</h1>
       {param2 === 'undefined' ?
-
         <Card border="primary" style={{ width: '30rem', marginLeft: "400px" }}>
           <Card.Header className="text-center">News</Card.Header>
           <Card.Img src={searchData[param1].urlToImage} alt="Card image" />
@@ -33,7 +35,6 @@ function Description(props) {
           </Card.Body>
         </Card>}
     </>
-
-  )
+  ):<Button variant="warning" onClick={goBack}> go back</Button>
 }
 export default Description

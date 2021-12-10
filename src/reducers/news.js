@@ -1,9 +1,10 @@
-import { NEWS_DATA,SET_SEARCH,GET_SEARCH } from "../actions";
+import { NEWS_DATA,SET_SEARCH,GET_SEARCH,SET_FAVORITES } from "../actions";
 
 const initialState={
     news:[],
     search:'',
-    searchData:[]
+    searchData:[],
+    favorite:[]
 }
 
 export const getNews=(state=initialState,action)=>{
@@ -22,7 +23,12 @@ export const getNews=(state=initialState,action)=>{
             return{
                 ...state,
                 searchData:action.payload
-            }       
+            }
+        case SET_FAVORITES:
+            return{
+                ...state,
+                favorite:action.payload
+            }           
         default:
             return state
     }
